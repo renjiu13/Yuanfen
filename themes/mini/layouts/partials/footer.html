@@ -1,18 +1,22 @@
 <footer class="footer">
   <div class="footer__copyright">
     {{ if .Site.Params.copyright }}
+      <!-- 这部分对应：© 2025 Yuanfen All Rights Reserved -->
       {{ .Site.Params.copyright | safeHTML }}
     {{ else }}
+      <!-- 如果没配置copyright，显示默认版权：© 2025 Yuanfen -->
       © Copyright {{ now.Format "2006" }} {{ .Site.Title }}
     {{ end }}
 
     {{ if .Site.Params.showPowerBy }}
+      <!-- 这部分对应：Powered by Hugo Theme By nodejh -->
       {{ $hugo := printf "<a href=\"https://gohugo.io/\">Hugo</a>" | safeHTML }}
       {{ $theme := printf "<a href=\"https://github.com/nodejh/hugo-theme-mini\">mini</a>" | safeHTML }}
       {{ i18n "poweredBy" (dict "Hugo" $hugo "Theme" $theme) | safeHTML }}
     {{ end }}
   </div>
 
+  <!-- 社交链接部分（可选） -->
   <div class="footer__social">
     {{ range $key, $val := .Site.Params.Social }}
       {{ if $val }}
