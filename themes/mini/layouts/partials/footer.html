@@ -1,0 +1,23 @@
+<footer class="footer">
+  <div class="footer__copyright">
+    {{ if .Site.Params.copyright }}
+      {{ .Site.Params.copyright | safeHTML }}
+    {{ else }}
+      © Copyright {{ now.Format "2006" }} {{ .Site.Title }}
+    {{ end }}
+
+    {{ if .Site.Params.showPowerBy }}
+      {{ $hugo := printf "<a href=\"https://gohugo.io/\">Hugo</a>" | safeHTML }}
+      {{ $theme := printf "<a href=\"https://github.com/nodejh/hugo-theme-mini\">mini</a>" | safeHTML }}
+      {{ i18n "poweredBy" (dict "Hugo" $hugo "Theme" $theme) | safeHTML }}
+    {{ end }}
+  </div>
+
+  <div class="footer__social">
+    {{ range $key, $val := .Site.Params.Social }}
+      {{ if $val }}
+        <a href="{{ $val }}" target="_blank" rel="noopener">{{ $key }}</a>
+      {{ end }}
+    {{ end }}
+  </div>
+</footer>

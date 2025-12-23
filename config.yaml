@@ -1,0 +1,80 @@
+# 基础配置（开发环境留空，部署时填入实际域名）
+baseURL: "https://122915.xyz" 
+languageCode: zh-CN
+title: Yuanfen
+theme: mini  # 核心：指定mini主题
+defaultContentLanguage: zh
+
+# 中文语言适配
+hasCJKLanguage: true
+# 文章链接格式
+permalinks:
+  posts: /posts/:title/
+
+# 新版Hugo分页配置（替代废弃的paginate）
+pagination:
+  pagerSize: 3
+
+# RSS兼容配置（解决RSS链接报错）
+rssLimit: 10
+outputFormats:
+  RSS:
+    mediatype: "application/rss"
+    baseName: "rss"
+# 输出格式配置（修复模板渲染）
+outputs:
+  home: 
+    - HTML
+    - RSS
+  page:
+    - HTML
+
+# 废弃配置（留空避免报错）
+googleAnalytics: ""
+disqusShortname: ""
+
+# Hugo标记渲染配置
+markup:
+  highlight:
+    guessSyntax: true
+    style: emacs
+  tableOfContents:
+    endLevel: 3
+    ordered: false
+    startLevel: 2
+  goldmark:
+    renderer:
+      unsafe: true
+
+# 站点核心参数（个性化修改这里）
+params:
+  author: 你的名字          # 替换为你的名字
+  bio: 我的Yuanfen个人博客  # 替换为博客简介
+  description: 简单、清爽的个人博客
+  enableRSS: true           # 启用RSS
+  enableComments: false     # 暂时关闭评论
+  enableGoogleAnalytics: false  # 暂时关闭GA
+  showToc: true             # 显示目录
+  showPowerBy: true         # 显示PowerBy
+  math: false               # 关闭数学公式
+  hiddenPostSummaryInHomePage: false
+  copyright: "© 2025 Yuanfen All Rights Reserved"
+  # 社交链接（填值后生效，空值不渲染）
+  social:
+    github: ""              # 示例：https://github.com/你的用户名
+    twitter: ""
+    stackoverflow: ""
+  # 自定义导航链接（按需添加）
+  links: []
+
+# 导航菜单
+menu:
+  main:
+    - name: 首页
+      url: /
+    - name: 归档
+      url: /archives/
+    - name: 标签
+      url: /tags/
+    - name: 关于
+      url: /about/
