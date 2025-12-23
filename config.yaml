@@ -48,8 +48,8 @@ markup:
 
 # 站点核心参数（个性化修改这里）
 params:
-  author: 你的名字          # 替换为你的名字
-  bio: 我的Yuanfen个人博客  # 替换为博客简介
+  author: A,wang          # 替换为你的名字
+  bio: A,wang日记  # 替换为博客简介
   description: 简单、清爽的个人博客
   enableRSS: true           # 启用RSS
   enableComments: false     # 暂时关闭评论
