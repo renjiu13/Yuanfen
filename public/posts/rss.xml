@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Yuanfen</title>
-    <link>http://localhost:1313/posts/</link>
+    <link>http://localhost:38204/posts/</link>
     <description>Recent content in Posts on Yuanfen</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <atom:link href="http://localhost:1313/posts/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:38204/posts/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>http://localhost:1313/posts/</link>
+      <link>http://localhost:38204/posts/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/</guid>
+      <guid>http://localhost:38204/posts/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://github.com/nodejh/hugo-theme-mini&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;hugo-theme-mini&lt;/a&gt;  如何使用这个仓库，来创建一个Github仓库命名为“Yuanfen”。使用EdgeOne pages 来发布网页，搭建博客呢？&lt;/p&gt;</description>
     </item>
   </channel>

@@ -1,78 +1,24 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=38204&amp;path=livereload" data-no-instant defer></script>
-    <title>Yuanfen</title>
-
-    <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
-<meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="简单、清爽的个人博客">
-<meta name="generator" content="Hugo 0.153.1">
-
-
-  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-
-
-<link rel="stylesheet" href="/css/style.css">
-
-
-
-<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
-
-
-
-
-
-
-  
-    <link href="/rss.xml" rel="alternate" type="application/rss+xml" title="Yuanfen" />
-    <link href="/rss.xml" rel="feed" type="application/rss+xml" title="Yuanfen" />
-  
-
-
-
-  </head>
-
-  <body>
-    <nav class="navigation">
-	
-	<a href="/posts">归档</a>
-	<a href="/tags">标签</a>
-	<a href="/about">关于</a>
-
-	
-
-	
-	  <a class="button" href="http://localhost:38204/rss.xml">
-		订阅
-	  </a>
-	
-</nav>
-
-    <main class="main">
-      
-<header class="profile">
-    
+<!-- WordPress 个人资料卡片小工具 -->
 <script>
     const CONFIG = {
       avatar: {
-        url: "https:\/\/img.alicdn.com\/imgextra\/i3\/3776889809\/O1CN01hyjGMW2MKa7BpzUJH_!!3776889809.jpg",
-        adminPath: "/wp-admin", 
-        clickThreshold: 4,    
-        clickTimeout: 1200    
+        url: "{{ if .Site.Params.avatar }}{{ .Site.Params.avatar }}{{ else }}/images/avatar.png{{ end }}",
+        adminPath: "/wp-admin", // WordPress默认后台路径，替换成你的实际后台路径
+        clickThreshold: 4,    // 点击次数阈值
+        clickTimeout: 1200    // 点击超时时间(ms)
       },
       profile: {
-        motto: "A,wang日记" 
+        motto: "{{ if .Site.Params.bio }}{{ .Site.Params.bio }}{{ else }}{{ .Site.Title }}{{ end }}" // 使用站点简介或标题作为座右铭
       },
       social: {
         qqGroup: "https://qm.qq.com/q/DpH0DM5gUU",
-        github: "",
+        github: "{{ .Site.Params.social.github }}",
         weibo: "https://www.weibo.com/u/777"
       }
     };
 </script>
 
-
+<!-- 个人资料卡片结构 -->
 <div class="custom-sidebar-widget">
   <div class="profile-container">
     <div class="avatar-container">
@@ -85,7 +31,7 @@
     <div id="profile-motto" class="profile-motto"></div>
   </div>
 
-  
+  <!-- 社交媒体链接 -->
   <div class="contact-container">
     <a id="qq-link" href="#" class="contact-icon qq-icon" title="加入QQ群聊" rel="noopener noreferrer">
       <i class="fa-brands fa-qq" aria-hidden="true"></i>
@@ -99,15 +45,15 @@
   </div>
 </div>
 
-
+<!-- 样式定义（优化头像视觉效果） -->
 <style>
 .custom-sidebar-widget {
-  background-color: transparent;  
-  border: none;  
+  background-color: transparent; /* 卡片背景透明 */
+  border: none; /* 去除卡片整体边框 */
   border-radius: 8px;
   padding: 16px;
   margin: 0 auto 20px;
-  box-shadow: none;  
+  box-shadow: none; /* 无阴影，如需保留可注释此行 */
   max-width: 85%;
   transition: transform 0.3s ease;
 }
@@ -132,18 +78,18 @@
   height: 90px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid transparent;  
-  background: linear-gradient(145deg, #6a11cb, #2575fc) border-box;  
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);  
+  border: 4px solid transparent; /* 使用渐变边框 */
+  background: linear-gradient(145deg, #6a11cb, #2575fc) border-box; /* 渐变边框背景 */
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); /* 双层遮罩实现圆角 */
   -webkit-mask-composite: destination-out;
   mask-composite: exclude;
-  box-shadow: 0 6px 16px rgba(37, 117, 252, 0.3);  
+  box-shadow: 0 6px 16px rgba(37, 117, 252, 0.3); /* 增强投影效果 */
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
 }
 
- 
+/* 添加头像光泽效果 */
 .profile-avatar::before {
   content: '';
   position: absolute;
@@ -158,7 +104,7 @@
 
 .profile-avatar:hover {
   transform: scale(1.08) rotate(5deg);
-  box-shadow: 0 10px 25px rgba(37, 117, 252, 0.45);  
+  box-shadow: 0 10px 25px rgba(37, 117, 252, 0.45); /* 悬停时增强投影 */
 }
 
 .profile-avatar:hover::before {
@@ -188,13 +134,13 @@
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background-color: #f8f9fa;  
+  background-color: #f8f9fa; /* 社交图标背景保留，如需透明可改为transparent */
   color: #333;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 18px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  border: none;  
+  border: none; /* 社交图标无边框 */
 }
 
 .contact-icon:hover {
@@ -204,7 +150,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
- 
+/* 响应式设计 */
 @media (max-width: 768px) {
   .custom-sidebar-widget {
     max-width: 95%;
@@ -214,8 +160,8 @@
   .profile-avatar {
     width: 80px;
     height: 80px;
-    border: 3px solid transparent;  
-    box-shadow: 0 4px 12px rgba(37, 117, 252, 0.25);  
+    border: 3px solid transparent; /* 移动端渐变边框 */
+    box-shadow: 0 4px 12px rgba(37, 117, 252, 0.25); /* 移动端投影优化 */
   }
   
   .contact-icon {
@@ -226,31 +172,31 @@
 }
 </style>
 
-
+<!-- Font Awesome 图标库 -->
 <link rel="stylesheet" 
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
       integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
       crossorigin="anonymous" 
       referrerpolicy="no-referrer">
 
-
+<!-- 功能实现脚本 -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const { avatar, profile, social } = CONFIG;
   
-  
+  // 初始化头像和座右铭
   const avatarImg = document.getElementById('profile-avatar');
   const mottoEl = document.getElementById('profile-motto');
   
   avatarImg.src = avatar.url;
   mottoEl.textContent = profile.motto;
   
-  
+  // 设置社交媒体链接
   document.getElementById('qq-link').href = social.qqGroup;
   document.getElementById('github-link').href = `https://github.com/${social.github}`;
   document.getElementById('weibo-link').href = social.weibo;
   
-  
+  // 头像快速点击进入管理后台
   let clickCount = 0;
   let clickTimer = null;
   
@@ -275,35 +221,3 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-</header>
-
-<div id="list-page">
-    
-    
-    
-        
-        
-        <section class="item">
-          <div>
-            <h1 class="title"><a href='/posts/'></a></h1>
-            <div class ="date">
-                <time datetime="0001-01-01 00:00:00 &#43;0000 UTC">0001/01/01</time>  
-            </div>
-          </div>
-
-          
-              <div class="summary">hugo-theme-mini 如何使用这个仓库，来创建一个Github仓库命名为“Yuanfen”。使用EdgeOne pages 来发布网页，搭建博客呢？
-</div>
-          
-
-        </section>
-    
-
-    
-
-
-</div>
-
-    </main>
-  </body>
-</html>
