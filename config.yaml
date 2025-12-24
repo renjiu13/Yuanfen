@@ -50,7 +50,7 @@ markup:
 params:
   author: A,wang          # 替换为你的名字
   bio: A,wang日记  # 替换为博客简介
-  avatar: "https://img.alicdn.com/imgextra/i3/3776889809/O1CN01hyjGMW2MKa7BpzUJH_!!3776889809.jpg"  # 头像URL
+  avatar: "/images/头像.png"  # 头像URL
   description: 简单、清爽的个人博客
   enableRSS: true           # 启用RSS
   enableComments: false     # 暂时关闭评论
