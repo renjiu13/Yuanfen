@@ -1,0 +1,11 @@
+{
+  "name": "yuanfen",
+  "version": "1.0.0",
+  "description": "Yuanfen Hugo Site",
+  "scripts": {
+    "build": "hugo --gc --minify"
+  },
+  "devDependencies": {
+    "hugo-extended": "latest"
+  }
+}
