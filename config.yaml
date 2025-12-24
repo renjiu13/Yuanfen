@@ -2,6 +2,7 @@
 # Hugo 站点主配置文件 (config.yaml)
 # 作用：定义站点全局设置、主题参数、导航菜单、构建规则等。
 # ==============================================================================
+# 分类和标签配置
 # 基础配置（开发环境留空，部署时填入实际域名）
 baseURL: "https://122915.xyz" 
 languageCode: zh-CN
@@ -54,7 +55,7 @@ markup:
 params:
   author: A,wang          # 替换为你的名字
   bio: A,wang日记  # 替换为博客简介
-  avatar: "/images/头像.png"  # 头像URL
+  avatar: "/images/avatar.png"  # 头像URL
   description: 简单、清爽的个人博客
   enableRSS: true           # 启用RSS
   enableComments: false     # 暂时关闭评论
@@ -62,6 +63,7 @@ params:
   showToc: true             # 显示目录
   showPowerBy: false         # 显示PowerBy
   math: false               # 关闭数学公式
+  defaultContentLanguage: zh  # 默认语言
   hiddenPostSummaryInHomePage: false
   # copyright: "© 2025 Yuanfen All Rights Reserved"
   # 社交链接（填值后生效，空值不渲染）
@@ -72,6 +74,11 @@ params:
   # 自定义导航链接（按需添加）
   links: []
 
+# 分类和标签
+taxonomies:
+  category: categories
+  tag: tags
+
 # 导航菜单
 menu:
   main:
@@ -79,6 +86,8 @@ menu:
       url: /
     - name: 归档
       url: /archives/
+    - name: 分类
+      url: /categories/
     - name: 标签
       url: /tags/
     - name: 关于
