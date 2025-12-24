@@ -55,7 +55,7 @@ markup:
 params:
   author: A,wang          # 替换为你的名字
   bio: A,wang日记  # 替换为博客简介
-  avatar: "/images/avatar.png"  # 头像URL
+  avatar: "/images/头像.png"  # 头像URL
   description: 简单、清爽的个人博客
   enableRSS: true           # 启用RSS
   enableComments: false     # 暂时关闭评论

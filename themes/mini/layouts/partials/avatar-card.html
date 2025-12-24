@@ -1,51 +1,4 @@
-<!-- WordPress 个人资料卡片小工具 -->
-<script>
-    const CONFIG = {
-      avatar: {
-        url: "{{ if .Site.Params.avatar }}{{ .Site.Params.avatar }}{{ else }}/images/avatar.png{{ end }}",
-        adminPath: "/wp-admin", // WordPress默认后台路径，替换成你的实际后台路径
-        clickThreshold: 4,    // 点击次数阈值
-        clickTimeout: 1200    // 点击超时时间(ms)
-      },
-      profile: {
-        motto: "{{ if .Site.Params.bio }}{{ .Site.Params.bio }}{{ else }}{{ .Site.Title }}{{ end }}" // 使用站点简介或标题作为座右铭
-      },
-      social: {
-        qqGroup: "https://qm.qq.com/q/DpH0DM5gUU",
-        github: "{{ .Site.Params.social.github }}",
-        weibo: "https://www.weibo.com/u/777"
-      }
-    };
-</script>
-
-<!-- 个人资料卡片结构 -->
-<div class="custom-sidebar-widget">
-  <div class="profile-container">
-    <div class="avatar-container">
-      <img id="profile-avatar"
-           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-           alt="个人头像"
-           class="profile-avatar"
-           loading="lazy">
-    </div>
-    <div id="profile-motto" class="profile-motto"></div>
-  </div>
-
-  <!-- 社交媒体链接 -->
-  <div class="contact-container">
-    <a id="qq-link" href="#" class="contact-icon qq-icon" title="加入QQ群聊" rel="noopener noreferrer">
-      <i class="fa-brands fa-qq" aria-hidden="true"></i>
-    </a>
-    <a id="github-link" href="#" class="contact-icon github-icon" title="访问我的GitHub" rel="noopener noreferrer">
-      <i class="fa-brands fa-github" aria-hidden="true"></i>
-    </a>
-    <a id="weibo-link" href="#" class="contact-icon weibo-icon" title="访问我的微博" rel="noopener noreferrer">
-      <i class="fa-brands fa-weibo" aria-hidden="true"></i>
-    </a>
-  </div>
-</div>
-
-<!-- 样式定义（优化头像视觉效果） -->
+<!-- 个人资料卡片局部模版 -->
 <style>
 .custom-sidebar-widget {
   background-color: transparent; /* 卡片背景透明 */
@@ -179,45 +132,34 @@
       crossorigin="anonymous" 
       referrerpolicy="no-referrer">
 
-<!-- 功能实现脚本 -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const { avatar, profile, social } = CONFIG;
-  
-  // 初始化头像和座右铭
-  const avatarImg = document.getElementById('profile-avatar');
-  const mottoEl = document.getElementById('profile-motto');
-  
-  avatarImg.src = avatar.url;
-  mottoEl.textContent = profile.motto;
-  
-  // 设置社交媒体链接
-  document.getElementById('qq-link').href = social.qqGroup;
-  document.getElementById('github-link').href = `https://github.com/${social.github}`;
-  document.getElementById('weibo-link').href = social.weibo;
-  
-  // 头像快速点击进入管理后台
-  let clickCount = 0;
-  let clickTimer = null;
-  
-  avatarImg.addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
+<div class="custom-sidebar-widget">
+  <div class="profile-container">
+    <div class="avatar-container">
+      <img id="profile-avatar"
+           src="{{ if .Site.Params.avatar }}{{ .Site.Params.avatar }}{{ else }}/images/avatar.png{{ end }}"
+           alt="{{ .Site.Params.author | default "Author" }}"
+           class="profile-avatar"
+           loading="lazy">
+    </div>
+    <div id="profile-motto" class="profile-motto">
+      {{ if .Site.Params.bio }}{{ .Site.Params.bio }}{{ else }}{{ .Site.Title }}{{ end }}
+    </div>
+  </div>
+
+  <!-- 社交媒体链接 -->
+  <div class="contact-container">
+    <a href="https://qm.qq.com/q/DpH0DM5gUU" class="contact-icon qq-icon" title="加入QQ群聊" target="_blank" rel="noopener noreferrer">
+      <i class="fa-brands fa-qq" aria-hidden="true"></i>
+    </a>
     
-    clickCount++;
+    {{ with .Site.Params.social.github }}
+    <a href="https://github.com/{{ . }}" class="contact-icon github-icon" title="访问我的GitHub" target="_blank" rel="noopener noreferrer">
+      <i class="fa-brands fa-github" aria-hidden="true"></i>
+    </a>
+    {{ end }}
     
-    if (clickTimer) {
-      clearTimeout(clickTimer);
-    }
-    
-    clickTimer = setTimeout(() => {
-      clickCount = 0;
-    }, avatar.clickTimeout);
-    
-    if (clickCount === avatar.clickThreshold) {
-      window.open(window.location.origin + avatar.adminPath, '_blank');
-      clickCount = 0;
-    }
-  });
-});
-</script>
+    <a href="https://www.weibo.com/u/777" class="contact-icon weibo-icon" title="访问我的微博" target="_blank" rel="noopener noreferrer">
+      <i class="fa-brands fa-weibo" aria-hidden="true"></i>
+    </a>
+  </div>
+</div>
