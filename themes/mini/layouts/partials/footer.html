@@ -2,6 +2,12 @@
   文件：页脚局部模版 (layouts/partials/footer.html)
   作用：定义页面底部的 JavaScript 引用、版权信息等。
 -->
+<footer id="footer">
+    <div class="copyright">
+        ©{{ now.Year }} 风言风语 · 阿轩
+    </div>
+</footer>
+
 {{ range .Site.Params.customJS }}
     {{ if ( or ( hasPrefix . "http://" ) ( hasPrefix . "https://" ) ) }}
         <!-- remote js -->

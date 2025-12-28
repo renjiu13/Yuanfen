@@ -1,18 +1,24 @@
 <nav class="navigation">
-	{{ if not .IsHome }}
-		<a href="{{ "/" | relURL }}"> <span class="arrow">←</span>{{ with .Site.Params.home }}{{ . }}{{ else }}{{ i18n "home" }}{{ end }}</a>
-	{{ end }}
-	<a href="{{ "/posts" | relURL }}">{{ with .Site.Params.archive }}{{ . }}{{ else }}{{ i18n "archive" }}{{ end }}</a>
-	<a href="{{ "/tags" | relURL }}">{{ with .Site.Params.tags }}{{ . }}{{ else }}{{ i18n "tags" }}{{ end }}</a>
-	<a href="{{ "/about" | relURL }}">{{ with .Site.Params.about }}{{ . }}{{ else }}{{ i18n "about" }}{{ end }}</a>
-
-	{{ range $element := .Site.Params.Links }}
-		<a href="{{ $element.path }}">{{ $element.name }}</a>
-	{{ end }}
-
-	{{ if .Site.Params.enableRSS }}
-	  <a class="button" href="{{ with .Site.Home.OutputFormats.Get "RSS" }}{{ .Permalink }}{{ end }}">
-		{{ with .Site.Params.subscribe }}{{ . }}{{ else }}{{ i18n "subscribe" }}{{ end }}
-	  </a>
-	{{ end }}
+  <div class="nav-wrapper">
+    <div class="nav-left">
+      <a href="{{ "/" | relURL }}" class="site-branding">
+        <h1 class="site-title">{{ .Site.Title | default "风言风语" }}</h1>
+        <span class="site-subtitle">{{ .Site.Params.subtitle | default "纯粹的风言风语" }}</span>
+      </a>
+    </div>
+    <div class="nav-right">
+      <a href="{{ "/" | relURL }}">{{ i18n "home" | default "首页" }}</a>
+      <a href="{{ "/archives" | relURL }}">{{ i18n "archive" | default "归档" }}</a>
+      <a href="{{ "/share" | relURL }}">分享</a>
+      <a href="{{ "/essay" | relURL }}">随笔</a>
+      <a href="{{ "/friends" | relURL }}">友链</a>
+      <a href="{{ "/about" | relURL }}">{{ i18n "about" | default "关于我" }}</a>
+      
+      {{ if .Site.Params.enableRSS }}
+        <a class="button" href="{{ with .Site.Home.OutputFormats.Get "RSS" }}{{ .Permalink }}{{ end }}">
+        {{ with .Site.Params.subscribe }}{{ . }}{{ else }}{{ i18n "subscribe" }}{{ end }}
+        </a>
+      {{ end }}
+    </div>
+  </div>
 </nav>

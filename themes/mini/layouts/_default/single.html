@@ -4,46 +4,56 @@
 -->
 {{ define "main" }}
 
-<section id="single">
-    <h1 class="title">{{ .Title }}</h1>
+<div class="main-container">
+  <div class="content-wrapper">
+    <section id="single">
+        <h1 class="title">{{ .Title }}</h1>
 
-    <div class="tip">
-        <time datetime="{{ .PublishDate }}">{{ i18n "publishDateFull" . }}</time>
-        <span class="split">
-          ·
-        </span>
-        <span>
-          {{ i18n "wordCount" . }}
-        </span>
-        <span class="split">
-          ·
-        </span>
-        <span>
-          {{ i18n "minuteRead" . }}
-        </span>
-    </div>
-
-    
-    {{ if or .Site.Params.showToc .Params.showToc }}
-        {{ partial "toc.html" . }}
-    {{ end }}
-
-
-    <div class="content">
-      {{ .Content }}
-    </div>
-
-    {{ with .Params.tags }}
-        <div class="tags">
-            {{ range . }}
-                <a href="{{ "tags/" | absURL }}{{ . | urlize }}">{{ . }}</a>
-            {{ end }}
+        <div class="tip">
+            <time datetime="{{ .PublishDate }}">{{ i18n "publishDateFull" . }}</time>
+            <span class="split">
+              ·
+            </span>
+            <span>
+              {{ i18n "wordCount" . }}
+            </span>
+            <span class="split">
+              ·
+            </span>
+            <span>
+              {{ i18n "minuteRead" . }}
+            </span>
+            <span class="split">
+              ·
+            </span>
+            <span>已关闭评论</span>
         </div>
-    {{ end}}
-    
-    {{ partial "comment.html" . }}
 
-</section>
+        
+        {{ if or .Site.Params.showToc .Params.showToc }}
+            {{ partial "toc.html" . }}
+        {{ end }}
+
+
+        <div class="content">
+          {{ .Content }}
+        </div>
+
+        {{ with .Params.tags }}
+            <div class="tags">
+                {{ range . }}
+                    <a href="{{ "tags/" | absURL }}{{ . | urlize }}">{{ . }}</a>
+                {{ end }}
+            </div>
+        {{ end}}
+        
+        {{ partial "comment.html" . }}
+
+    </section>
+  </div>
+  
+  {{ partial "sidebar.html" . }}
+</div>
 
 {{ end }}
 

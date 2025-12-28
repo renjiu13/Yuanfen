@@ -1,0 +1,39 @@
+<aside class="sidebar">
+  <div class="sidebar-widget profile">
+     {{ partial "avatar-card.html" . }}
+  </div>
+
+  <div class="sidebar-widget archives">
+    <h3 class="widget-title">归档</h3>
+    <ul class="widget-list">
+      {{ range .Site.RegularPages.GroupByDate "2006年01月" }}
+      <li><a href="{{ "/archives" | relURL }}">{{ .Key }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+
+  <div class="sidebar-widget recent-posts">
+    <h3 class="widget-title">近期文章</h3>
+    <ul class="widget-list">
+      {{ range first 5 .Site.RegularPages }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+
+  <div class="sidebar-widget tags">
+    <h3 class="widget-title">标签</h3>
+    <div class="tag-cloud">
+      {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+      <a href="{{ "/tags/" | relURL }}{{ $name | urlize }}" class="tag-item">{{ $name }}</a>
+      {{ end }}
+    </div>
+  </div>
+
+  <div class="sidebar-widget mumbles">
+    <h3 class="widget-title">碎碎念</h3>
+    <div class="widget-content">
+       <p>暂无内容</p>
+    </div>
+  </div>
+</aside>
