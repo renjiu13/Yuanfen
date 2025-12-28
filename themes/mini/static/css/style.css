@@ -214,19 +214,35 @@ nav.navigation a.button {
 
 /* footer */
 #footer {
-  margin-top: 100px;
-  margin-bottom: 100px;
-  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-top: 1px solid #eee;
+  padding: 10px 0;
+  text-align: left;
   color: #bbbbbb;
   font-size: 14px;
+  z-index: 1000;
 }
 #footer .copyright {
-  margin: 20px auto;
+  margin: 0 20px;
   font-size: 15px;
 }
 .powerby {
   margin: 20px auto;
   font-size: 13px;
+}
+
+/* 为防止固定页脚遮挡内容，给body添加底部边距 */
+body {
+  padding-bottom: 60px;
+}
+
+/* 确保页脚不会覆盖主要内容 */
+#single, #list-page, #archive, #section, #page-404 {
+  padding-bottom: 20px;
 }
 #footer .split {
   cursor: pointer;
